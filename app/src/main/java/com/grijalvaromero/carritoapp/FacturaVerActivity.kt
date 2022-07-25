@@ -1,11 +1,7 @@
 package com.grijalvaromero.carritoapp
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.widget.TableRow
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,12 +9,10 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.grijalvaromero.carritoapp.adapters.DetalleFacturaAdapter
-import com.grijalvaromero.carritoapp.adapters.VentaAdapter
+import com.grijalvaromero.carritoapp.adapters.DetalleFacturaAdapter_AMS
 import com.grijalvaromero.carritoapp.configs.Config
 import com.grijalvaromero.carritoapp.databinding.ActivityFacturaVerBinding
 import com.grijalvaromero.carritoapp.modelos.DetalleFactura
-import com.grijalvaromero.carritoapp.modelos.Venta
 import org.json.JSONObject
 
 lateinit var  IdRegistro:String
@@ -115,7 +109,7 @@ class FacturaVerActivity : AppCompatActivity() {
 
                 }
 
-                var adapater = DetalleFacturaAdapter(detalles)
+                var adapater = DetalleFacturaAdapter_AMS(detalles)
                 recyclerView?.adapter = adapater
 
             },

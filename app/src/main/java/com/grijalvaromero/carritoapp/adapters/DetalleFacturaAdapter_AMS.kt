@@ -13,20 +13,19 @@ import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.configs.Config
 import com.grijalvaromero.carritoapp.modelos.DetalleFactura
-import com.grijalvaromero.carritoapp.modelos.Producto
 import org.json.JSONObject
 
 
-class DetalleFacturaAdapter(var detalles:ArrayList<DetalleFactura>) : RecyclerView.Adapter<DetalleFacturaAdapter.ViewHolder>() {
+class DetalleFacturaAdapter_AMS(var detalles:ArrayList<DetalleFactura>) : RecyclerView.Adapter<DetalleFacturaAdapter_AMS.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetalleFacturaAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetalleFacturaAdapter_AMS.ViewHolder {
 
         val vista  = LayoutInflater.from(parent.context).inflate(R.layout.factura_detalle_item,parent,false)
         return ViewHolder(vista)
 
     }
 
-    override fun onBindViewHolder(holder: DetalleFacturaAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DetalleFacturaAdapter_AMS.ViewHolder, position: Int) {
 
         holder.binItems(detalles[position])
     }

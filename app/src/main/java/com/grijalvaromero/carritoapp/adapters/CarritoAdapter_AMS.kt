@@ -1,17 +1,14 @@
 package com.grijalvaromero.carritoapp.adapters
 
-import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -22,11 +19,9 @@ import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.VerProducto
 import com.grijalvaromero.carritoapp.configs.Conexion
 import com.grijalvaromero.carritoapp.configs.Config
-import com.grijalvaromero.carritoapp.configs.DeslizarItemCarrito
 import com.grijalvaromero.carritoapp.modelos.ItemCarrito
 import com.grijalvaromero.carritoapp.modelos.Producto
 import org.json.JSONObject
-import kotlin.math.log
 
 class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito>, val idCliente:String) : RecyclerView.Adapter<CarritoAdapter_AMS.ViewHolder>() {
 

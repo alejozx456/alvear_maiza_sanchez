@@ -1,5 +1,6 @@
 package com.grijalvaromero.carritoapp
 
+import android.R.attr
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -114,46 +115,9 @@ class RegistroClienteActivity : AppCompatActivity() {
     }
 
 
-    private fun validarCedula_AMS(cedula: String): Boolean {
+    private fun validarCedula_AMS(x: String): Boolean {
+       return true
 
-        var cedulaCorrecta = false
-
-        try {
-            if (cedula.length === 10) // ConstantesApp.LongitudCedula
-            {
-                val tercerDigito = cedula.substring(2, 3).toInt()
-                if (tercerDigito < 6) {
-                    val coefValCedula = intArrayOf(2, 1, 2, 1, 2, 1, 2, 1, 2)
-                    val verificador = cedula.substring(9, 10).toInt()
-                    var suma = 0
-                    var digito = 0
-                    for (i in 0 until cedula.length - 1) {
-                        digito = cedula.substring(i, i + 1).toInt() * coefValCedula[i]
-                        suma += digito % 10 + digito / 10
-                    }
-                    if (suma % 10 == 0 && suma % 10 == verificador) {
-                        cedulaCorrecta = true
-                    } else if (10 - suma % 10 == verificador) {
-                        cedulaCorrecta = true
-                    } else {
-                        cedulaCorrecta = false
-                    }
-                } else {
-                    cedulaCorrecta = false
-                }
-            } else {
-                cedulaCorrecta = false
-            }
-        } catch (nfe: NumberFormatException) {
-            cedulaCorrecta = false
-        } catch (err: Exception) {
-           // println("Una excepcion ocurrio en el proceso de validadcion")
-            cedulaCorrecta = false
-        }
-        if (!cedulaCorrecta) {
-            println("La Cédula ingresada es Incorrecta")
-        }
-        return cedulaCorrecta
     }
 
     private fun validarClave( clave: String): Boolean {

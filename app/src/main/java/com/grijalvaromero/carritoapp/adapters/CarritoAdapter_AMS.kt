@@ -28,16 +28,16 @@ import com.grijalvaromero.carritoapp.modelos.Producto
 import org.json.JSONObject
 import kotlin.math.log
 
-class CarritoAdapter (val productos:ArrayList<ItemCarrito> , val idCliente:String) : RecyclerView.Adapter<CarritoAdapter.ViewHolder>() {
+class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito>, val idCliente:String) : RecyclerView.Adapter<CarritoAdapter_AMS.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarritoAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarritoAdapter_AMS.ViewHolder {
 
         val vista  = LayoutInflater.from(parent.context).inflate(R.layout.item_carrito,parent,false)
         return ViewHolder(vista)
 
     }
 
-    override fun onBindViewHolder(holder: CarritoAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CarritoAdapter_AMS.ViewHolder, position: Int) {
 
         holder.binItems(productos[position])
     }

@@ -19,7 +19,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.grijalvaromero.carritoapp.adapters.CarritoAdapter
+import com.grijalvaromero.carritoapp.adapters.CarritoAdapter_AMS
 import com.grijalvaromero.carritoapp.configs.Conexion
 import com.grijalvaromero.carritoapp.configs.ConexionCliente
 import com.grijalvaromero.carritoapp.configs.Config
@@ -78,7 +78,7 @@ class Carrito : AppCompatActivity() {
             } while (respuesta.moveToNext())
         }
 
-        var adapter = CarritoAdapter(listaProductos, idCliente)
+        var adapter = CarritoAdapter_AMS(listaProductos, idCliente)
 
         lista.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 

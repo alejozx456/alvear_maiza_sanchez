@@ -32,7 +32,7 @@ class RegistroClienteActivity : AppCompatActivity() {
 
 
         if(validarCampos(binding)) {
-            if(validarCedula(cedula)){
+            if(validarCedula_AMS(cedula)){
                 if(validarClave(clave)){
 
                     bandera= true
@@ -114,7 +114,7 @@ class RegistroClienteActivity : AppCompatActivity() {
     }
 
 
-    private fun validarCedula(cedula: String): Boolean {
+    private fun validarCedula_AMS(cedula: String): Boolean {
 
         var cedulaCorrecta = false
 

@@ -33,7 +33,7 @@ class RegistroClienteActivity : AppCompatActivity() {
 
         if(validarCampos_AMS(binding)) {
             if(validarCedula_AMS(cedula)){
-                if(validarClave_AMS(clave)){
+                if(validacionClave_AMS(clave)){
 
                     bandera= true
                 }else{
@@ -115,7 +115,44 @@ class RegistroClienteActivity : AppCompatActivity() {
 
 
     private fun validarCedula_AMS(cedula: String): Boolean {
-        return true
+        var cedulavalida_AMS = false
+
+        try {
+            if (cedula.length === 10)
+            {
+                val tercerd_AMS = cedula.substring(2, 3).toInt()
+                if (tercerd_AMS < 6) {
+                    val validar_AMS = intArrayOf(2, 1, 2, 1, 2, 1, 2, 1, 2)
+                    val ver_AMS = cedula.substring(9, 10).toInt()
+                    var comprobrarSuma_AMS = 0
+                    var digito = 0
+                    for (i in 0 until cedula.length - 1) {
+                        digito = cedula.substring(i, i + 1).toInt() * validar_AMS[i]
+                        comprobrarSuma_AMS += digito % 10 + digito / 10
+                    }
+                    if (comprobrarSuma_AMS % 10 == 0 && comprobrarSuma_AMS % 10 == ver_AMS) {
+                        cedulavalida_AMS = true
+                    } else if (10 - comprobrarSuma_AMS % 10 == ver_AMS) {
+                        cedulavalida_AMS = true
+                    } else {
+                        cedulavalida_AMS = false
+                    }
+                } else {
+                    cedulavalida_AMS = false
+                }
+            } else {
+                cedulavalida_AMS = false
+            }
+        } catch (nfe: NumberFormatException) {
+            cedulavalida_AMS = false
+        } catch (err: Exception) {
+            // println("Una excepcion ocurrio en el proceso de validadcion")
+            cedulavalida_AMS = false
+        }
+        if (!cedulavalida_AMS) {
+            println("La Cédula ingresada no es correcta")
+        }
+        return cedulavalida_AMS
     }
 
     private fun validarClave_AMS( clave: String): Boolean {

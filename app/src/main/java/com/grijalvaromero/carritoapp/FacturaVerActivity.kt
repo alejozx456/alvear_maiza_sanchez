@@ -10,14 +10,14 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.adapters.DetalleFacturaAdapter_AMS
-import com.grijalvaromero.carritoapp.configs.Config
+import com.grijalvaromero.carritoapp.configs.Config_AMS
 import com.grijalvaromero.carritoapp.databinding.ActivityFacturaVerBinding
-import com.grijalvaromero.carritoapp.modelos.DetalleFactura
+import com.grijalvaromero.carritoapp.modelos.DetalleFactura_AMS
 import org.json.JSONObject
 
 lateinit var  IdRegistro:String
 private var recyclerView: RecyclerView?=null;
-var detalles = ArrayList<DetalleFactura>()
+var detalles = ArrayList<DetalleFactura_AMS>()
 
 class FacturaVerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +38,8 @@ class FacturaVerActivity : AppCompatActivity() {
 
     private fun cargarMestro(binding: ActivityFacturaVerBinding) {
 
-        var config = Config()
-        var url = config.ipServidor+ "Venta"+"/"+ IdRegistro
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor+ "Venta"+"/"+ IdRegistro
 
         var jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -65,8 +65,8 @@ class FacturaVerActivity : AppCompatActivity() {
     }
 
     private fun cargarCliente(clienteID: String,binding: ActivityFacturaVerBinding) {
-        var config = Config()
-        var url = config.ipServidor+ "cliente"+"/"+ clienteID
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor+ "cliente"+"/"+ clienteID
 
         var jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -87,8 +87,8 @@ class FacturaVerActivity : AppCompatActivity() {
 
     fun cargarDetalle(binding: ActivityFacturaVerBinding){
 
-        var config = Config()
-        var url = config.ipServidor+ "DetalleVenta" +"/"+ IdRegistro
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor+ "DetalleVenta" +"/"+ IdRegistro
 
         var jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -98,7 +98,7 @@ class FacturaVerActivity : AppCompatActivity() {
                     val item = datos.getJSONObject(i)
                     Log.i("detalle",item.getString("idPro").toString())
                     detalles.add(
-                        DetalleFactura(
+                        DetalleFactura_AMS(
                             item.getString("idPro"),
                             item.getString("precio"),
                             item.getString("cantidad"),

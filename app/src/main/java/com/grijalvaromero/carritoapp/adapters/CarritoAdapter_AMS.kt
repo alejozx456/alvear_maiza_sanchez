@@ -18,7 +18,7 @@ import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.VerProducto
 import com.grijalvaromero.carritoapp.configs.Conexion_AMS
-import com.grijalvaromero.carritoapp.configs.Config
+import com.grijalvaromero.carritoapp.configs.Config_AMS
 import com.grijalvaromero.carritoapp.modelos.ItemCarrito
 import com.grijalvaromero.carritoapp.modelos.Producto
 import org.json.JSONObject
@@ -90,8 +90,8 @@ class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito>, val idCliente:St
         }
 
         fun recargar(contexto: Context, id:String, nombreVer:TextView,precioVer:TextView,imagen:ImageView, cantidad:String,totalVer:TextView){
-            var config = Config()
-            var url = config.ipServidor+ "Producto/"+ id
+            var configAMS = Config_AMS()
+            var url = configAMS.ipServidor+ "Producto/"+ id
 
             var jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, url, null,

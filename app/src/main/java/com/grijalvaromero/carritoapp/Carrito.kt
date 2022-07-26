@@ -22,8 +22,8 @@ import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.adapters.CarritoAdapter_AMS
 import com.grijalvaromero.carritoapp.configs.Conexion_AMS
 import com.grijalvaromero.carritoapp.configs.ConexionCliente_AMS
-import com.grijalvaromero.carritoapp.configs.Config
-import com.grijalvaromero.carritoapp.configs.DeslizarItemCarrito
+import com.grijalvaromero.carritoapp.configs.Config_AMS
+import com.grijalvaromero.carritoapp.configs.DeslizarItemCarrito_AMS
 import com.grijalvaromero.carritoapp.modelos.DetalleVenta
 import com.grijalvaromero.carritoapp.modelos.ItemCarrito
 import com.grijalvaromero.carritoapp.modelos.Producto
@@ -83,7 +83,7 @@ class Carrito : AppCompatActivity() {
         lista.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
 
-        var deslizar = object : DeslizarItemCarrito(this) {
+        var deslizar = object : DeslizarItemCarrito_AMS(this) {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 when (direction) {
@@ -117,8 +117,8 @@ class Carrito : AppCompatActivity() {
 
         var i = 0;
         for (item in listaProductos) {
-            var config = Config()
-            var url = config.ipServidor + "Producto/" + item.id
+            var configAMS = Config_AMS()
+            var url = configAMS.ipServidor + "Producto/" + item.id
             var _cantidad = item.cantidad;
             var jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, url, null,
@@ -215,8 +215,8 @@ class Carrito : AppCompatActivity() {
 
     fun registrarMaestro() {
 
-        var config = Config()
-        var url = config.ipServidor + "VentaTelefono"
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor + "VentaTelefono"
         //var envio: ArrayList<DetalleVenta> = listaCompra as ArrayList<DetalleVenta>
         val params = HashMap<String, Any>()
         val total = txtTotal.text.toString().toFloat()
@@ -257,8 +257,8 @@ class Carrito : AppCompatActivity() {
 
 
     fun registrarDetalle() {
-        var config = Config()
-        var url = config.ipServidor + "Venta"
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor + "Venta"
         var jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener { respuesta: JSONObject ->
@@ -275,8 +275,8 @@ class Carrito : AppCompatActivity() {
 
     private fun postdetalle(numFac: Int) {
 
-        var config = Config()
-        var url = config.ipServidor + "DetalleVenta"
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor + "DetalleVenta"
        for (item in listaCompra){
            val params = HashMap<String, Any>()
            params["IdVentPer"] = numFac

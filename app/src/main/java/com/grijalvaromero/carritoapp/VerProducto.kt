@@ -17,7 +17,7 @@ import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.configs.Conexion_AMS
-import com.grijalvaromero.carritoapp.configs.Config
+import com.grijalvaromero.carritoapp.configs.Config_AMS
 import com.grijalvaromero.carritoapp.modelos.Producto
 import org.json.JSONObject
 
@@ -102,8 +102,8 @@ class VerProducto : AppCompatActivity() {
 
 
     fun recargar(contexto: Context, id:String,bandera:String){
-        var config = Config()
-        var url = config.ipServidor+ "Producto/"+ id
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor+ "Producto/"+ id
         var jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener { respuesta: JSONObject ->

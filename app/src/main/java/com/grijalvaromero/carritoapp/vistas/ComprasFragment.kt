@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.adapters.VentaAdapter_AMS
 import com.grijalvaromero.carritoapp.configs.ConexionCliente_AMS
-import com.grijalvaromero.carritoapp.configs.Config
+import com.grijalvaromero.carritoapp.configs.Config_AMS
 import com.grijalvaromero.carritoapp.modelos.Venta
 import org.json.JSONObject
 
@@ -76,8 +76,8 @@ class ComprasFragment : Fragment() {
             } while (respuesta.moveToNext())
         }
 
-        var config = Config()
-        var url = config.ipServidor+ "Venta"
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor+ "Venta"
         var jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener { respuesta: JSONObject ->

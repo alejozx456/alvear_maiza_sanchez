@@ -11,12 +11,12 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
-import com.grijalvaromero.carritoapp.configs.Config
-import com.grijalvaromero.carritoapp.modelos.DetalleFactura
+import com.grijalvaromero.carritoapp.configs.Config_AMS
+import com.grijalvaromero.carritoapp.modelos.DetalleFactura_AMS
 import org.json.JSONObject
 
 
-class DetalleFacturaAdapter_AMS(var detalles:ArrayList<DetalleFactura>) : RecyclerView.Adapter<DetalleFacturaAdapter_AMS.ViewHolder>() {
+class DetalleFacturaAdapter_AMS(var detalles:ArrayList<DetalleFactura_AMS>) : RecyclerView.Adapter<DetalleFacturaAdapter_AMS.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetalleFacturaAdapter_AMS.ViewHolder {
 
@@ -40,7 +40,7 @@ class DetalleFacturaAdapter_AMS(var detalles:ArrayList<DetalleFactura>) : Recycl
         init {
 
         }
-        fun binItems(detalle: DetalleFactura){
+        fun binItems(detalle: DetalleFactura_AMS){
 
             val codigo = itemView.findViewById<TextView>(R.id.textViewCodigoPro)
             codigo.text=detalle.IdPro
@@ -59,8 +59,8 @@ class DetalleFacturaAdapter_AMS(var detalles:ArrayList<DetalleFactura>) : Recycl
         }
 
         private fun nombreProducto(idPro: String, contexto:Context) {
-            var config = Config()
-            var url = config.ipServidor+ "Producto/"+ idPro
+            var configAMS = Config_AMS()
+            var url = configAMS.ipServidor+ "Producto/"+ idPro
             var jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, url, null,
                 Response.Listener { respuesta: JSONObject ->

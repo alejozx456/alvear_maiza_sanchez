@@ -1,6 +1,5 @@
 package com.grijalvaromero.carritoapp
 
-import android.R.attr
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +11,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.grijalvaromero.carritoapp.configs.Config
+import com.grijalvaromero.carritoapp.configs.Config_AMS
 import com.grijalvaromero.carritoapp.databinding.ActivityRegistroClienteBinding
 import org.json.JSONObject
 
@@ -59,8 +58,8 @@ class RegistroClienteActivity : AppCompatActivity() {
 
 
         if(bandera){
-            var config = Config()
-            var url = config.ipServidor+ "Cliente"
+            var configAMS = Config_AMS()
+            var url = configAMS.ipServidor+ "Cliente"
 
             val params = HashMap<String,String>()
             params["cedulaCli"] =  binding.editTextClienteCedula.text.toString()
@@ -115,9 +114,8 @@ class RegistroClienteActivity : AppCompatActivity() {
     }
 
 
-    private fun validarCedula_AMS(x: String): Boolean {
-       return true
-
+    private fun validarCedula_AMS(cedula: String): Boolean {
+        return true
     }
 
     private fun validarClave( clave: String): Boolean {

@@ -16,7 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.adapters.ProductoAdapter_AMS
-import com.grijalvaromero.carritoapp.configs.Config
+import com.grijalvaromero.carritoapp.configs.Config_AMS
 import com.grijalvaromero.carritoapp.modelos.Producto
 import org.json.JSONObject
 
@@ -70,8 +70,8 @@ class HomeFragment : Fragment() ,SearchView.OnQueryTextListener {
 
 
     fun recargar(contexto:Context){
-        var config = Config()
-        var url = config.ipServidor+ "Producto"
+        var configAMS = Config_AMS()
+        var url = configAMS.ipServidor+ "Producto"
         var jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
             Response.Listener { respuesta:JSONObject ->
                 var datos = respuesta.getJSONArray("data")

@@ -10,7 +10,7 @@ import com.grijalvaromero.carritoapp.R
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 
-abstract class DeslizarItemCarrito(context:Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+abstract class DeslizarItemCarrito_AMS(context:Context) : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
    val deleteColor = ContextCompat.getColor(context, R.color.deletecolor)
    val archiveColor = ContextCompat.getColor(context,R.color.archivecolor)

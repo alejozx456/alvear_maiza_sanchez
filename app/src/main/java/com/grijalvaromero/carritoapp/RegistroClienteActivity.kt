@@ -74,7 +74,7 @@ class RegistroClienteActivity : AppCompatActivity() {
                 Request.Method.POST,url, jsonObject,
                 Response.Listener {
                     // Process the json
-                    Toast.makeText(applicationContext, "Cliente Insertado con exito", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Usuario Insertado con exito", Toast.LENGTH_LONG).show()
                     var inte = Intent(this,LoginActivity::class.java)
                     startActivity(inte)
 

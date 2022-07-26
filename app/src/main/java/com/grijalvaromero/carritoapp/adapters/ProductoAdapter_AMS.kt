@@ -3,7 +3,6 @@ package com.grijalvaromero.carritoapp.adapters
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -16,17 +15,17 @@ import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.VerProducto
 import com.grijalvaromero.carritoapp.modelos.Producto
 
-class ProductoAdapter(var productos:ArrayList<Producto>) : RecyclerView.Adapter<ProductoAdapter.ViewHolder>() {
+class ProductoAdapter_AMS(var productos:ArrayList<Producto>) : RecyclerView.Adapter<ProductoAdapter_AMS.ViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoAdapter_AMS.ViewHolder {
 
         val vista  = LayoutInflater.from(parent.context).inflate(R.layout.item_producto,parent,false)
         return ViewHolder(vista)
 
     }
 
-    override fun onBindViewHolder(holder: ProductoAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProductoAdapter_AMS.ViewHolder, position: Int) {
 
         holder.binItems(productos[position])
     }

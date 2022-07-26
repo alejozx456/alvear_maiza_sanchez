@@ -20,8 +20,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.adapters.CarritoAdapter_AMS
-import com.grijalvaromero.carritoapp.configs.Conexion
-import com.grijalvaromero.carritoapp.configs.ConexionCliente
+import com.grijalvaromero.carritoapp.configs.Conexion_AMS
+import com.grijalvaromero.carritoapp.configs.ConexionCliente_AMS
 import com.grijalvaromero.carritoapp.configs.Config
 import com.grijalvaromero.carritoapp.configs.DeslizarItemCarrito
 import com.grijalvaromero.carritoapp.modelos.DetalleVenta
@@ -59,8 +59,8 @@ class Carrito : AppCompatActivity() {
         var listaProductos = ArrayList<ItemCarrito>()
         var lista = findViewById<RecyclerView>(R.id.listaCarrito)
 
-        var conexion = Conexion(this)
-        var db = conexion.writableDatabase
+        var conexionAMS = Conexion_AMS(this)
+        var db = conexionAMS.writableDatabase
         var sql = "Select * from carrito"
         var respuesta = db.rawQuery(sql, null)
 
@@ -165,7 +165,7 @@ class Carrito : AppCompatActivity() {
 
 
 
-        var conexionCl = ConexionCliente(this)
+        var conexionCl = ConexionCliente_AMS(this)
         var dbCl = conexionCl.writableDatabase
 
         var sql = "Select * from usuario"
@@ -195,8 +195,8 @@ class Carrito : AppCompatActivity() {
     }
 
     fun generarCompra(){
-        var conexion = Conexion(this)
-        var db = conexion.writableDatabase
+        var conexionAMS = Conexion_AMS(this)
+        var db = conexionAMS.writableDatabase
         registrarMaestro()
         db.execSQL("delete from carrito")
          var intent = Intent(this,MainActivity::class.java)

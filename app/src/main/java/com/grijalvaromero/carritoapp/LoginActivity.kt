@@ -1,6 +1,5 @@
 package com.grijalvaromero.carritoapp
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,12 +11,9 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.grijalvaromero.carritoapp.adapters.ProductoAdapter
-import com.grijalvaromero.carritoapp.configs.Conexion
-import com.grijalvaromero.carritoapp.configs.ConexionCliente
+import com.grijalvaromero.carritoapp.configs.ConexionCliente_AMS
 import com.grijalvaromero.carritoapp.configs.Config
 import com.grijalvaromero.carritoapp.modelos.Cliente
-import com.grijalvaromero.carritoapp.modelos.Producto
 import org.json.JSONObject
 
 var clientes = ArrayList<Cliente>()
@@ -70,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                 }
-                var conexion = ConexionCliente(this)
+                var conexion = ConexionCliente_AMS(this)
                 var  db = conexion.writableDatabase
 
                 if (bandera){

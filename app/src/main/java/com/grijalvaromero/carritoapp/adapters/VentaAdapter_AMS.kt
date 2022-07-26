@@ -1,8 +1,6 @@
 package com.grijalvaromero.carritoapp.adapters
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,22 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.grijalvaromero.carritoapp.FacturaVerActivity
 import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.modelos.Venta
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 
-class VentaAdapter(var ventas:ArrayList<Venta>) : RecyclerView.Adapter<VentaAdapter.ViewHolder>() {
+class VentaAdapter_AMS(var ventas:ArrayList<Venta>) : RecyclerView.Adapter<VentaAdapter_AMS.ViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VentaAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VentaAdapter_AMS.ViewHolder {
 
         val vista  = LayoutInflater.from(parent.context).inflate(R.layout.item_venta,parent,false)
         return ViewHolder(vista)
 
     }
 
-    override fun onBindViewHolder(holder: VentaAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: VentaAdapter_AMS.ViewHolder, position: Int) {
 
         holder.binItems(ventas[position])
     }

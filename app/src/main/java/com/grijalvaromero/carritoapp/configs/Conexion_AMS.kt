@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class Conexion(var contexto: Context ): SQLiteOpenHelper(contexto, "carrito", null,1) {
+class Conexion_AMS(var contexto: Context ): SQLiteOpenHelper(contexto, "carrito", null,1) {
 
 
     override fun onCreate(p0: SQLiteDatabase?) {

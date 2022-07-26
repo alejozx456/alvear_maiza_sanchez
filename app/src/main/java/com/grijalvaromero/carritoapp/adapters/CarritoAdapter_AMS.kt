@@ -17,7 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.VerProducto
-import com.grijalvaromero.carritoapp.configs.Conexion
+import com.grijalvaromero.carritoapp.configs.Conexion_AMS
 import com.grijalvaromero.carritoapp.configs.Config
 import com.grijalvaromero.carritoapp.modelos.ItemCarrito
 import com.grijalvaromero.carritoapp.modelos.Producto
@@ -43,8 +43,8 @@ class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito>, val idCliente:St
     }
 
     fun delete(position: Int, contexto: Context){
-        var conexion = Conexion(contexto)
-        var  db = conexion.writableDatabase
+        var conexionAMS = Conexion_AMS(contexto)
+        var  db = conexionAMS.writableDatabase
         val ItemProducto = productos[position]
        db.delete("carrito","id_producto="+ItemProducto.id,null)
         productos.removeAt(position);
@@ -53,8 +53,8 @@ class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito>, val idCliente:St
 
     fun editar(position: Int, contexto: Context){
         val ItemProducto = productos[position]
-        var conexion = Conexion(contexto)
-        var  db = conexion.writableDatabase
+        var conexionAMS = Conexion_AMS(contexto)
+        var  db = conexionAMS.writableDatabase
 
         var intent = Intent( contexto,VerProducto::class.java)
         intent.putExtra("Id",ItemProducto.id)

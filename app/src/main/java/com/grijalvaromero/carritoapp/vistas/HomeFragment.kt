@@ -1,31 +1,23 @@
 package com.grijalvaromero.carritoapp.vistas
 
-import android.app.DownloadManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.grijalvaromero.carritoapp.Carrito
 import com.grijalvaromero.carritoapp.R
-import com.grijalvaromero.carritoapp.adapters.ProductoAdapter
+import com.grijalvaromero.carritoapp.adapters.ProductoAdapter_AMS
 import com.grijalvaromero.carritoapp.configs.Config
 import com.grijalvaromero.carritoapp.modelos.Producto
-import org.json.JSONArray
 import org.json.JSONObject
 
 // TODO: Rename parameter arguments, choose names that match
@@ -44,7 +36,7 @@ class HomeFragment : Fragment() ,SearchView.OnQueryTextListener {
     private var param2: String? = null
     var productos = ArrayList<Producto>()
     private var recyclerView:RecyclerView?=null;
-    lateinit var _adapter:ProductoAdapter
+    lateinit var _adapter:ProductoAdapter_AMS
     lateinit var idCliente:String
 
    private var txtBuscar:SearchView?=null
@@ -97,7 +89,7 @@ class HomeFragment : Fragment() ,SearchView.OnQueryTextListener {
 
                 }
                // var adapater = ProductoAdapter(productos)
-                _adapter= ProductoAdapter(productos)
+                _adapter= ProductoAdapter_AMS(productos)
                 recyclerView?.adapter = _adapter
 
                 // Toast.makeText(contexto,respuesta.getString("data") , Toast.LENGTH_SHORT).show()

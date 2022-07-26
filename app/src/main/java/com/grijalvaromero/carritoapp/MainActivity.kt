@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -16,10 +15,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import com.grijalvaromero.carritoapp.configs.Conexion
-import com.grijalvaromero.carritoapp.configs.ConexionCliente
+import com.grijalvaromero.carritoapp.configs.Conexion_AMS
+import com.grijalvaromero.carritoapp.configs.ConexionCliente_AMS
 import com.grijalvaromero.carritoapp.vistas.ComprasFragment
-import com.grijalvaromero.carritoapp.vistas.FavsFragment
 import com.grijalvaromero.carritoapp.vistas.HomeFragment
 
 
@@ -99,12 +97,12 @@ override fun onNavigationItemSelected(item: MenuItem): Boolean {
          builder.setTitle("Cerrar Sesión")
          builder.setMessage("Desea sallir de la Aplicacion")
          builder.setPositiveButton("Aceptar") { dialog, which ->
-             var conexionCl = ConexionCliente(this)
+             var conexionCl = ConexionCliente_AMS(this)
              var  dbCl = conexionCl.writableDatabase
               dbCl.execSQL("delete from usuario")
 
-             var conexion = Conexion(this)
-             var  db = conexion.writableDatabase
+             var conexionAMS = Conexion_AMS(this)
+             var  db = conexionAMS.writableDatabase
 
              db.execSQL("delete from carrito")
 

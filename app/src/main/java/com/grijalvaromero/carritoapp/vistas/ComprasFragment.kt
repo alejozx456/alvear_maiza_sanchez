@@ -15,11 +15,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
-import com.grijalvaromero.carritoapp.adapters.ProductoAdapter
-import com.grijalvaromero.carritoapp.adapters.VentaAdapter
-import com.grijalvaromero.carritoapp.configs.ConexionCliente
+import com.grijalvaromero.carritoapp.adapters.VentaAdapter_AMS
+import com.grijalvaromero.carritoapp.configs.ConexionCliente_AMS
 import com.grijalvaromero.carritoapp.configs.Config
-import com.grijalvaromero.carritoapp.modelos.Producto
 import com.grijalvaromero.carritoapp.modelos.Venta
 import org.json.JSONObject
 
@@ -66,7 +64,7 @@ class ComprasFragment : Fragment() {
 
     fun recargar(contexto: Context){
 
-        var conexionCl = ConexionCliente(contexto)
+        var conexionCl = ConexionCliente_AMS(contexto)
         var dbCl = conexionCl.writableDatabase
 
         var sql = "Select * from usuario"
@@ -100,7 +98,7 @@ class ComprasFragment : Fragment() {
                     }
 
                 }
-                 var adapater = VentaAdapter(ventas)
+                 var adapater = VentaAdapter_AMS(ventas)
                 recyclerView?.adapter = adapater
                 var decoracin = DividerItemDecoration(contexto,LinearLayoutManager(contexto).orientation)
                 recyclerView?.addItemDecoration(decoracin)

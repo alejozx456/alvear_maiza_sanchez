@@ -147,6 +147,13 @@ class RegistroClienteActivity : AppCompatActivity() {
         return bandera
     }
 
+    private fun validacionClave_AMS(clave:String):Boolean{
+        val pattern=Regex("^[0-9;A-Z{2};a-z{2}]{6,10}",RegexOption.IGNORE_CASE)
+        return pattern.containsMatchIn(clave)
+
+
+    }
+
 
 
 }

@@ -18,7 +18,7 @@ import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.adapters.VentaAdapter_AMS
 import com.grijalvaromero.carritoapp.configs.ConexionCliente_AMS
 import com.grijalvaromero.carritoapp.configs.Config_AMS
-import com.grijalvaromero.carritoapp.modelos.Venta
+import com.grijalvaromero.carritoapp.modelos.Venta_AMS
 import org.json.JSONObject
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,7 +36,7 @@ class ComprasFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var recyclerView: RecyclerView?=null;
-    var ventas = ArrayList<Venta>()
+    var ventaAMS = ArrayList<Venta_AMS>()
     var clienteID: Int = 0
 
 
@@ -86,8 +86,8 @@ class ComprasFragment : Fragment() {
                     val item = datos.getJSONObject(i)
                     // Log.i("Producto",item.getString("nombrePro"))
                     if (item.getString("idCliente").toInt() == clienteID){
-                        ventas.add(
-                            Venta(
+                        ventaAMS.add(
+                            Venta_AMS(
                             item.getString("idVenta"),
                             item.getString("fechaVen"),
                             item.getString("idCliente"),
@@ -98,7 +98,7 @@ class ComprasFragment : Fragment() {
                     }
 
                 }
-                 var adapater = VentaAdapter_AMS(ventas)
+                 var adapater = VentaAdapter_AMS(ventaAMS)
                 recyclerView?.adapter = adapater
                 var decoracin = DividerItemDecoration(contexto,LinearLayoutManager(contexto).orientation)
                 recyclerView?.addItemDecoration(decoracin)

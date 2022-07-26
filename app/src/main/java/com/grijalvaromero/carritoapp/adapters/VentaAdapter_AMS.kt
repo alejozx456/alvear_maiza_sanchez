@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.grijalvaromero.carritoapp.FacturaVerActivity
 import com.grijalvaromero.carritoapp.R
-import com.grijalvaromero.carritoapp.modelos.Venta
+import com.grijalvaromero.carritoapp.modelos.Venta_AMS
 
 
-class VentaAdapter_AMS(var ventas:ArrayList<Venta>) : RecyclerView.Adapter<VentaAdapter_AMS.ViewHolder>() {
+class VentaAdapter_AMS(var ventaAMS:ArrayList<Venta_AMS>) : RecyclerView.Adapter<VentaAdapter_AMS.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VentaAdapter_AMS.ViewHolder {
@@ -23,12 +23,12 @@ class VentaAdapter_AMS(var ventas:ArrayList<Venta>) : RecyclerView.Adapter<Venta
 
     override fun onBindViewHolder(holder: VentaAdapter_AMS.ViewHolder, position: Int) {
 
-        holder.binItems(ventas[position])
+        holder.binItems(ventaAMS[position])
     }
 
     override fun getItemCount(): Int {
 
-        return  ventas.size
+        return  ventaAMS.size
     }
 
 
@@ -37,27 +37,27 @@ class VentaAdapter_AMS(var ventas:ArrayList<Venta>) : RecyclerView.Adapter<Venta
         init {
 
         }
-        fun binItems(venta: Venta){
+        fun binItems(ventaAMS: Venta_AMS){
             //configuracion cuando le dan clic
 
             itemView.setOnClickListener {
 
                 var intent = Intent(itemView.context, FacturaVerActivity::class.java)
-                intent.putExtra("IdRegistro",venta.idVenta)
+                intent.putExtra("IdRegistro",ventaAMS.idVenta)
                 itemView.context.startActivity( intent)
             }
 
 
 
             val numFactura = itemView.findViewById<TextView>(R.id.textViewVistaVentaFactura)
-            numFactura.text=venta.idVenta.toString()
+            numFactura.text=ventaAMS.idVenta.toString()
 
             val fechaVen= itemView.findViewById<TextView>(R.id.textViewVistaVentaFecha)
-           var fecha = venta.fechaVen.split("T00:00:00").toTypedArray()
+           var fecha = ventaAMS.fechaVen.split("T00:00:00").toTypedArray()
             fechaVen.text = fecha[0]
 
             val total= itemView.findViewById<TextView>(R.id.textViewVistaVentaTotal)
-            total.text = "$"+ String.format("%.2f", venta.total.toString().toDouble())
+            total.text = "$"+ String.format("%.2f", ventaAMS.total.toString().toDouble())
 
         }
 

@@ -19,11 +19,11 @@ import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.VerProducto
 import com.grijalvaromero.carritoapp.configs.Conexion_AMS
 import com.grijalvaromero.carritoapp.configs.Config_AMS
-import com.grijalvaromero.carritoapp.modelos.ItemCarrito
-import com.grijalvaromero.carritoapp.modelos.Producto
+import com.grijalvaromero.carritoapp.modelos.ItemCarrito_AMS
+import com.grijalvaromero.carritoapp.modelos.Producto_AMS
 import org.json.JSONObject
 
-class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito>, val idCliente:String) : RecyclerView.Adapter<CarritoAdapter_AMS.ViewHolder>() {
+class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito_AMS>, val idCliente:String) : RecyclerView.Adapter<CarritoAdapter_AMS.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarritoAdapter_AMS.ViewHolder {
 
@@ -75,7 +75,7 @@ class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito>, val idCliente:St
 
         }
 
-        fun binItems(producto: ItemCarrito){
+        fun binItems(producto: ItemCarrito_AMS){
 
             val nombre= itemView.findViewById<TextView>(R.id.nombreCarrito)
             val precio= itemView.findViewById<TextView>(R.id.precioCarrito)
@@ -97,18 +97,18 @@ class CarritoAdapter_AMS (val productos:ArrayList<ItemCarrito>, val idCliente:St
                 Request.Method.GET, url, null,
                 Response.Listener { respuesta: JSONObject ->
                     var item = respuesta.getJSONObject("data")
-                  var  producto = Producto(
+                  var  productoAMS = Producto_AMS(
                         item.getString("idProducto"),
                         item.getString("nombrePro"),
                         item.getString("precioPro"),
                         item.getString("cantidadPro"),
                         item.getString("imagenPro"))
-                    nombreVer.text = producto.nombre
-                    precioVer.text = "$ "+ String.format("%.2f", producto.precio.toString().toDouble())
-                    var total:Double = producto.precio.toDouble() * cantidad.toDouble()
+                    nombreVer.text = productoAMS.nombre
+                    precioVer.text = "$ "+ String.format("%.2f", productoAMS.precio.toString().toDouble())
+                    var total:Double = productoAMS.precio.toDouble() * cantidad.toDouble()
                     totalVer.text = "Total "+"$ "+ String.format("%.2f", total.toString().toDouble())
 
-                    cargarImagen(producto.imagen,imagen,contexto)
+                    cargarImagen(productoAMS.imagen,imagen,contexto)
                 },
                 Response.ErrorListener {  },)
 

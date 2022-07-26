@@ -24,9 +24,9 @@ import com.grijalvaromero.carritoapp.configs.Conexion_AMS
 import com.grijalvaromero.carritoapp.configs.ConexionCliente_AMS
 import com.grijalvaromero.carritoapp.configs.Config_AMS
 import com.grijalvaromero.carritoapp.configs.DeslizarItemCarrito_AMS
-import com.grijalvaromero.carritoapp.modelos.DetalleVenta
-import com.grijalvaromero.carritoapp.modelos.ItemCarrito
-import com.grijalvaromero.carritoapp.modelos.Producto
+import com.grijalvaromero.carritoapp.modelos.DetalleVenta_AMS
+import com.grijalvaromero.carritoapp.modelos.ItemCarrito_AMS
+import com.grijalvaromero.carritoapp.modelos.Producto_AMS
 import org.json.JSONObject
 import java.util.*
 
@@ -42,12 +42,12 @@ class Carrito : AppCompatActivity() {
     var clienteID: Int = 0
     //  lateinit var listaCompra: ArrayList<DetalleVenta>
 
-    val listaCompra: MutableList<DetalleVenta> = mutableListOf()
+    val listaCompra: MutableList<DetalleVenta_AMS> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
-        lateinit var producto: Producto
+        lateinit var productoAMS: Producto_AMS
         btnPagar = findViewById(R.id.btnPagarCarrito)
         txtTotal = findViewById(R.id.textViewTotal)
         txtSubtotal = findViewById(R.id.textViewSubtotal)
@@ -56,7 +56,7 @@ class Carrito : AppCompatActivity() {
         idCliente = intent.getStringExtra("idCliente")
 
 
-        var listaProductos = ArrayList<ItemCarrito>()
+        var listaProductos = ArrayList<ItemCarrito_AMS>()
         var lista = findViewById<RecyclerView>(R.id.listaCarrito)
 
         var conexionAMS = Conexion_AMS(this)
@@ -67,7 +67,7 @@ class Carrito : AppCompatActivity() {
         if (respuesta.moveToFirst()) {
             do {
                 listaProductos.add(
-                    ItemCarrito(
+                    ItemCarrito_AMS(
                         respuesta.getString(1),
                         "",
                         "",
@@ -113,7 +113,7 @@ class Carrito : AppCompatActivity() {
     }
 
 
-    private fun listacorrer(listaProductos: ArrayList<ItemCarrito>) {
+    private fun listacorrer(listaProductos: ArrayList<ItemCarrito_AMS>) {
 
         var i = 0;
         for (item in listaProductos) {
@@ -124,7 +124,7 @@ class Carrito : AppCompatActivity() {
                 Request.Method.GET, url, null,
                 Response.Listener { respuesta: JSONObject ->
                     var item = respuesta.getJSONObject("data")
-                    val producto = Producto(
+                    val productoAMS = Producto_AMS(
                         item.getString("idProducto"),
                         item.getString("nombrePro"),
                         item.getString("precioPro"),
@@ -132,13 +132,13 @@ class Carrito : AppCompatActivity() {
                         item.getString("imagenPro")
                     )
                     listaCompra.add(
-                        DetalleVenta(
-                            producto.id.toInt(),
-                            producto.precio.toDouble(),
+                        DetalleVenta_AMS(
+                            productoAMS.id.toInt(),
+                            productoAMS.precio.toDouble(),
                             _cantidad.toInt()
                         )
                     )
-                    var total: Float = producto.precio.toFloat() * _cantidad.toFloat()
+                    var total: Float = productoAMS.precio.toFloat() * _cantidad.toFloat()
                     Log.i("total", total.toString())
                     totalSalida = totalSalida + total
                     var iva = totalSalida * 0.12;

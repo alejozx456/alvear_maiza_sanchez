@@ -13,9 +13,9 @@ import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.VerProducto
-import com.grijalvaromero.carritoapp.modelos.Producto
+import com.grijalvaromero.carritoapp.modelos.Producto_AMS
 
-class ProductoAdapter_AMS(var productos:ArrayList<Producto>) : RecyclerView.Adapter<ProductoAdapter_AMS.ViewHolder>() {
+class ProductoAdapter_AMS(var productoAMS:ArrayList<Producto_AMS>) : RecyclerView.Adapter<ProductoAdapter_AMS.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoAdapter_AMS.ViewHolder {
@@ -27,16 +27,16 @@ class ProductoAdapter_AMS(var productos:ArrayList<Producto>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ProductoAdapter_AMS.ViewHolder, position: Int) {
 
-        holder.binItems(productos[position])
+        holder.binItems(productoAMS[position])
     }
 
     override fun getItemCount(): Int {
 
-        return  productos.size
+        return  productoAMS.size
     }
 
-    fun setFilterList( _productos:ArrayList<Producto>){
-        this.productos=_productos
+    fun setFilterList(_productoAMS:ArrayList<Producto_AMS>){
+        this.productoAMS=_productoAMS
         notifyDataSetChanged()
     }
 
@@ -44,32 +44,32 @@ class ProductoAdapter_AMS(var productos:ArrayList<Producto>) : RecyclerView.Adap
      init {
 
      }
-        fun binItems(producto: Producto){
+        fun binItems(productoAMS: Producto_AMS){
 
             //configuracion cuando le dan clic
             itemView.setOnClickListener {
 
                 var intent = Intent(itemView.context,VerProducto::class.java)
-                intent.putExtra("Id",producto.id)
+                intent.putExtra("Id",productoAMS.id)
                 intent.putExtra("bandera","0")
                 itemView.context.startActivity( intent)
             }
 
             val codigo = itemView.findViewById<TextView>(R.id.textViewCodigo)
-            codigo.text=producto.id
+            codigo.text=productoAMS.id
 
             val nombre= itemView.findViewById<TextView>(R.id.item_nombre)
-            nombre.text =producto.nombre
+            nombre.text =productoAMS.nombre
 
             val precio= itemView.findViewById<TextView>(R.id.item_precio)
-            precio.text = "$"+ String.format("%.2f", producto.precio.toString().toDouble())
+            precio.text = "$"+ String.format("%.2f", productoAMS.precio.toString().toDouble())
 
             val stock= itemView.findViewById<TextView>(R.id.item_stock)
-            stock.text =producto.stock
+            stock.text =productoAMS.stock
 
             val imagen= itemView.findViewById<ImageView>(R.id.item_imagen)
             val queue =  Volley.newRequestQueue(itemView.context)
-            var imageRequest = ImageRequest(producto.imagen,
+            var imageRequest = ImageRequest(productoAMS.imagen,
                 Response.Listener { respuesta ->
                     imagen.setImageBitmap(respuesta)
 

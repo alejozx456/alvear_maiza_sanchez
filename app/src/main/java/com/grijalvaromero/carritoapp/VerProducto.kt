@@ -18,7 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.configs.Conexion_AMS
 import com.grijalvaromero.carritoapp.configs.Config_AMS
-import com.grijalvaromero.carritoapp.modelos.Producto
+import com.grijalvaromero.carritoapp.modelos.Producto_AMS
 import org.json.JSONObject
 
 
@@ -31,7 +31,7 @@ class VerProducto : AppCompatActivity() {
     lateinit var btnMas :Button
     lateinit var  btnMenos:Button
     lateinit var  btnComprar: Button
-    lateinit var producto:Producto
+    lateinit var productoAMS:Producto_AMS
     lateinit var txtCantidad:TextView
     lateinit var idCliente:String
     lateinit var  btnImagenCompras:ImageButton
@@ -72,13 +72,13 @@ class VerProducto : AppCompatActivity() {
         btnComprar.setOnClickListener {
 
 
-            if (txtCantidad.text.toString().toInt() <= producto.stock.toInt() && txtCantidad.text.toString().toInt() >0){
-                val SELECT = "SELECT * FROM carrito WHERE id_producto="+producto.id
+            if (txtCantidad.text.toString().toInt() <= productoAMS.stock.toInt() && txtCantidad.text.toString().toInt() >0){
+                val SELECT = "SELECT * FROM carrito WHERE id_producto="+productoAMS.id
                 val cursor: Cursor = db.rawQuery(SELECT, null)
                 if (cursor.moveToFirst()){
-                    db.execSQL("UPDATE carrito SET cantidad="+txtCantidad.text.toString()+" WHERE id_producto="+producto.id)
+                    db.execSQL("UPDATE carrito SET cantidad="+txtCantidad.text.toString()+" WHERE id_producto="+productoAMS.id)
                 }else{
-                    db.execSQL("Insert into carrito (id_producto,cantidad,id_Factura) values ("+producto.id+","+txtCantidad.text.toString()+",1)")
+                    db.execSQL("Insert into carrito (id_producto,cantidad,id_Factura) values ("+productoAMS.id+","+txtCantidad.text.toString()+",1)")
 
                 }
                 var intent = Intent(this,Carrito::class.java)
@@ -108,22 +108,22 @@ class VerProducto : AppCompatActivity() {
             Request.Method.GET, url, null,
             Response.Listener { respuesta: JSONObject ->
                 var item = respuesta.getJSONObject("data")
-                producto = Producto(
+                productoAMS = Producto_AMS(
                     item.getString("idProducto"),
                     item.getString("nombrePro"),
                     item.getString("precioPro"),
                     item.getString("cantidadPro"),
                     item.getString("imagenPro")
                 )
-                nombreVer.text = producto.nombre
-                precioVer.text = "$" + String.format("%.2f", producto.precio.toString().toDouble())
-                stockVer.text = producto.stock
-                cargarImagen(producto.imagen)
+                nombreVer.text = productoAMS.nombre
+                precioVer.text = "$" + String.format("%.2f", productoAMS.precio.toString().toDouble())
+                stockVer.text = productoAMS.stock
+                cargarImagen(productoAMS.imagen)
 
                 if (bandera != "0") {
                     txtCantidad.setText(bandera)
                 }
-                findViewById<TextView>(R.id.toolbarTitle).text = producto.nombre
+                findViewById<TextView>(R.id.toolbarTitle).text = productoAMS.nombre
             },
             Response.ErrorListener { },
         )

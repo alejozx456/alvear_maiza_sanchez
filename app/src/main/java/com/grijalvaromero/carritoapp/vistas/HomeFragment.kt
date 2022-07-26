@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley
 import com.grijalvaromero.carritoapp.R
 import com.grijalvaromero.carritoapp.adapters.ProductoAdapter_AMS
 import com.grijalvaromero.carritoapp.configs.Config_AMS
-import com.grijalvaromero.carritoapp.modelos.Producto
+import com.grijalvaromero.carritoapp.modelos.Producto_AMS
 import org.json.JSONObject
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,7 +34,7 @@ class HomeFragment : Fragment() ,SearchView.OnQueryTextListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    var productos = ArrayList<Producto>()
+    var productoAMS = ArrayList<Producto_AMS>()
     private var recyclerView:RecyclerView?=null;
     lateinit var _adapter:ProductoAdapter_AMS
     lateinit var idCliente:String
@@ -79,7 +79,7 @@ class HomeFragment : Fragment() ,SearchView.OnQueryTextListener {
                         val item = datos.getJSONObject(i)
                    // Log.i("Producto",item.getString("nombrePro"))
                     if (item.getString("cantidadPro").toInt()>0){
-                        productos.add(Producto(
+                        productoAMS.add(Producto_AMS(
                             item.getString("idProducto"),
                             item.getString("nombrePro"),
                             item.getString("precioPro"),
@@ -89,7 +89,7 @@ class HomeFragment : Fragment() ,SearchView.OnQueryTextListener {
 
                 }
                // var adapater = ProductoAdapter(productos)
-                _adapter= ProductoAdapter_AMS(productos)
+                _adapter= ProductoAdapter_AMS(productoAMS)
                 recyclerView?.adapter = _adapter
 
                 // Toast.makeText(contexto,respuesta.getString("data") , Toast.LENGTH_SHORT).show()
@@ -132,9 +132,9 @@ class HomeFragment : Fragment() ,SearchView.OnQueryTextListener {
     }
 
     private fun filterList(text: String) {
-        var filtarLista = ArrayList<Producto>()
+        var filtarLista = ArrayList<Producto_AMS>()
 
-        for ( item in productos){
+        for ( item in productoAMS){
             if (item.nombre.toLowerCase().contains(text.toLowerCase()) || item.id.contains(text)){
                 filtarLista.add(item)
             }
